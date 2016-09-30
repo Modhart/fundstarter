@@ -10,6 +10,8 @@ app.set('port', (process.env.PORT || 8080))
 app.get('/', function(request, response) {
     response.sendFile('public/index.html',{root:__dirname})
 
+port = process.env.PORT || 8080;
+
 /* sends an entire HTTP response to the client,                                                                                                                                     
  including headers and content,                                                                                                                                                     
  which is why you can only call once*/
