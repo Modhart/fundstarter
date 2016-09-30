@@ -1,24 +1,13 @@
-var express = require('express')
-var app = express()
 
+//Part 1a:
+var http = require('http');
+var fs = require('fs');
 
-app.set('port', (process.env.PORT || 8080))
-//app.use(express.static(__dirname + '/public'))
-
-//__dirname returns the directory that the currently executing script is in.
-
-app.get('/', function(request, response) {
-    response.sendFile('public/index.html',{root:__dirname})
-
-port = process.env.PORT || 8080;
-
-/* sends an entire HTTP response to the client,                                                                                                                                     
- including headers and content,                                                                                                                                                     
- which is why you can only call once*/
-
-
-})
-
-app.listen(app.get('port'), function() {
-  console.log("Node app is running at :" + app.get('port'))
-})
+function fundstarter(req, res)
+{
+    var content = fs.readFileSync('index.html');
+    res.writeHeader(200, {'Content-Type': 'text/html'});
+    res.write(content);
+    res.end();
+}
+http.createServer(fundStarter).listen(process.env.PORT || 8080);
