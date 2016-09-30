@@ -1,11 +1,12 @@
-
-//Part 1a:
 var http = require('http');
 var fs = require('fs');
 
+//Part 1a:
+
+var content = fs.readFileSync('index.html', "utf8");
+
 function fundstarter(req, res)
 {
-    var content = fs.readFileSync('index.html');
     res.writeHeader(200, {'Content-Type': 'text/html'});
     res.write(content);
     res.end();
