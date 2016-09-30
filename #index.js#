@@ -27,14 +27,16 @@ var port = process.env.PORT || 8080;
 
 var server = http.createServer(function(req, res)
 {
-
-res.writeHead(200, {'Content-Type': 'text/html'});
-
 	fs.readFile(filename, "utf8", function(err, con)
         {
-		if(err)	throw err
-		res.write(data)
-		res.end();
-	});
+		if(err)
+		{
+			throw err
+		}
+		else
+                {
+res.writeHead(200, {'Content-Type': 'text/html'});			res.end(con, 'utf8');
+		}
+	 });
 });
 console.log("End Program");
