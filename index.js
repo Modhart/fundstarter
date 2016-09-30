@@ -1,15 +1,13 @@
-var http = require('http');
 var fs = require('fs');
-
-//Part 1a
-//////////////////////////////////////////////////////////////////
-function FundStarter(res, req)
+var filename = "index.html";
+var http = require('http');
+var port = Number(process.env.PORT || 8080);
+var content = fs.readFileSync(filename, "utf8");
+var run = function(req, res)
 {
-	var content = fs.readFileSync('index.html');
-	res.writeHeader(200, {'Content-Type': 'text/html'});
-	res.write(content);
-	res.end();
-}
-http.createServer(FundStarter).listen(process.env.PORT || 8080);
-console.log('Test');
-//////////////////////////////////////////////////////////////////
+    res.writeHead(200, {"Content-Type": "text/html"});
+    res.end(content);
+};
+
+var server = http.createServer(run);
+server.listen(port);
